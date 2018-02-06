@@ -1,7 +1,6 @@
 export WS_HOME=$PWD
 export PATH=${WS_HOME}/mysql57/bin:$PATH
 
-
 MY_FILE="${WS_HOME}/my.cnf"
 
 echo "[mysqld_safe]" 					> $MY_FILE
