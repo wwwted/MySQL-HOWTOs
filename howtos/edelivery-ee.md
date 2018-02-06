@@ -1,6 +1,6 @@
 **[Back to Audit HOWTO](./audit.md)**
 
-# Download MySQL Cluster Software
+# Download MySQL Enterprise Edition Software
 
 Navigate to [Oracle Software Delivery Cloud](https://edelivery.oracle.com/osdc/faces/Home.jspx)
 
