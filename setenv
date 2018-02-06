@@ -1,5 +1,6 @@
-export PATH=/home/ted/ws/mysql57/bin:$PATH
-export WS_HOME=/home/ted/ws
+export WS_HOME=$PWD
+export PATH=${WS_HOME}/mysql57/bin:$PATH
+
 
 MY_FILE="${WS_HOME}/my.cnf"
 
