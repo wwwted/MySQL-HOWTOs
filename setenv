@@ -1,0 +1,15 @@
+export PATH=/home/ted/ws/mysql57/bin:$PATH
+export WS_HOME=/home/ted/ws
+
+MY_FILE="${WS_HOME}/my.cnf"
+
+echo "[mysqld_safe]" 					> $MY_FILE
+echo "socket			= /tmp/mysql.sock"	>> $MY_FILE
+echo " "						>> $MY_FILE
+echo "[mysqld]"						>> $MY_FILE
+echo "basedir			= $WS_HOME/mysql57"	>> $MY_FILE
+echo "datadir			= $WS_HOME/mysqldata"	>> $MY_FILE
+echo "port			= 3306"			>> $MY_FILE
+echo "secure_file_priv	= /tmp"				>> $MY_FILE
+echo " "						>> $MY_FILE
+
