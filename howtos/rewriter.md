@@ -51,7 +51,7 @@ First lets create some test data
 ```
 create database labb;
 use labb;
-create table testing (id int primary key auto_increment, name varchar(32), address varchar(32), age int);
+create table testing (id int primary key auto_increment, name varchar(32), address varchar(32), age int, index (name));
 DELIMITER $$
 CREATE PROCEDURE prepare_data()
 BEGIN
@@ -133,7 +133,7 @@ mysql> select * from testing where name like 'ted%';
 ```
 Works as expected, only 10 rows are returned instead of full table scan.
 
-#### Limit execution time of queries to max 10ms
+#### Limit execution time of queries to max 10ms (Optimizer Hints)
 ```
 INSERT INTO query_rewrite.rewrite_rules ( pattern, pattern_database, replacement )
 VALUES
@@ -152,4 +152,5 @@ mysql> select * from testing where name like 'ted%';
 ERROR 3024 (HY000): Query execution was interrupted, maximum statement execution time exceeded
 ```
 Works as expected, query was interupted after 10ms.
+
 
