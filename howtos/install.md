@@ -18,7 +18,7 @@ Setup environment variables, these are needed to get correct paths for scrips to
 ```
 bash$ . ./setenv
 ```
-Make skript executable:
+Make scripts executable:
 ```
 bash$ chmod +x ./scripts/*
 ```
