@@ -26,3 +26,5 @@ Create soft link to MySQL binaries:
 ```
 bash$ ln -s /home/ted/src/mysql-advanced-5.7.21-linux-glibc2.12-x86_64 mysql57
 ```
+
+**[Back to Agenda](./../README.md)**
