@@ -47,3 +47,109 @@ Important columns are:
 
 ### Demo
 
+First lets create some test data
+```
+create database labb;
+use labb;
+create table testing (id int primary key auto_increment, name varchar(32), address varchar(32), age int);
+DELIMITER $$
+CREATE PROCEDURE prepare_data()
+BEGIN
+  DECLARE i INT DEFAULT 100;
+
+  WHILE i < 10000 DO
+    INSERT INTO labb.testing (id,name,address,age) VALUES (i,CONCAT("ted",i),CONCAT("address",i),i);
+    SET i = i + 1;
+  END WHILE;
+END$$
+DELIMITER ;
+
+CALL prepare_data();
+```
+#### "Restrict access to some columns", statements with SELECT * can be replaced by specified list of columns.
+```
+INSERT INTO query_rewrite.rewrite_rules ( pattern, pattern_database, replacement )
+VALUES
+(
+  # Pattern
+  'SELECT * FROM testing WHERE id = ?',
+  # Database
+  'labb',
+  # Replacement
+  'SELECT name, address, age FROM testing WHERE id = ?');
+  call query_rewrite.flush_rewrite_rules();
+  ```
+Verify that rule works
+```
+mysql> select * from testing where id=100;
++--------+------------+------+
+| name   | address    | age  |
++--------+------------+------+
+| ted100 | address100 |  100 |
++--------+------------+------+
+1 row in set, 1 warning (0,00 sec)
+```
+Works as expected, id column is not returned, but hey what about that warning above
+```
+mysql> show warnings\G
+*************************** 1. row ***************************
+  Level: Note
+   Code: 1105
+Message: Query 'select * from testing where id=100' rewritten to 'SELECT name, address, age FROM testing WHERE id = 100' by a query rewrite plugin
+```
+Nice, MySQL will return a warning when rewrite plugin is triggerd and show information regarting the rule that was triggerd.
+
+#### Limit size of resultset to max 10 rows
+```
+INSERT INTO query_rewrite.rewrite_rules ( pattern, pattern_database, replacement )
+VALUES
+(
+  # Pattern
+  'SELECT * FROM testing WHERE name like ?',
+  # Database
+  'labb',
+  # Replacement
+  'SELECT * FROM testing WHERE name like ? limit 10');
+  call query_rewrite.flush_rewrite_rules();
+  ```
+Verify that rule works
+```
+mysql> select * from testing where name like 'ted%';
++-----+--------+------------+------+
+| id  | name   | address    | age  |
++-----+--------+------------+------+
+| 100 | ted100 | address100 |  100 |
+| 101 | ted101 | address101 |  101 |
+| 102 | ted102 | address102 |  102 |
+| 103 | ted103 | address103 |  103 |
+| 104 | ted104 | address104 |  104 |
+| 105 | ted105 | address105 |  105 |
+| 106 | ted106 | address106 |  106 |
+| 107 | ted107 | address107 |  107 |
+| 108 | ted108 | address108 |  108 |
+| 109 | ted109 | address109 |  109 |
++-----+--------+------------+------+
+10 rows in set, 1 warning (0,00 sec)
+```
+Works as expected, only 10 rows are returned instead of full table scan.
+
+#### Limit execution time of queries to max 10ms
+```
+INSERT INTO query_rewrite.rewrite_rules ( pattern, pattern_database, replacement )
+VALUES
+(
+  # Pattern
+  'SELECT * FROM testing WHERE name like ?',
+  # Database
+  'labb',
+  # Replacement
+  'SELECT /*+ MAX_EXECUTION_TIME(10)*/ * FROM testing WHERE name like ?');
+  call query_rewrite.flush_rewrite_rules();
+  ```
+Verify that rule works
+```
+mysql> select * from testing where name like 'ted%';
+ERROR 3024 (HY000): Query execution was interrupted, maximum statement execution time exceeded
+```
+Works as expected, query was intereupted after 10ms.
+
