@@ -2,7 +2,7 @@
 
 # MySQL Enterprise Audit
 
-In this HOWTO we are going to look at how to get started with MySQL Enterprise Audit and also show a small demo on how it works. If you do not have access to MySQL Enteprise Binaries these can be dowloaded for evaluation purpose following this [guide](/howtos/edelivery-ee.md).
+In this HOWTO we are going to look at how to get started with MySQL Enterprise Audit and also show a small demo on how it works. This feature is part of the MySQL Enterprise Edition, if you do not have access to MySQL Enteprise Binaries you can dowloaded them for evaluation purpose following this [guide](/howtos/edelivery-ee.md).
 
 Further reading:
 * https://www.mysql.com/products/enterprise/audit.html
