@@ -151,5 +151,5 @@ Verify that rule works
 mysql> select * from testing where name like 'ted%';
 ERROR 3024 (HY000): Query execution was interrupted, maximum statement execution time exceeded
 ```
-Works as expected, query was intereupted after 10ms.
+Works as expected, query was interupted after 10ms.
 
