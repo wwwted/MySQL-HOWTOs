@@ -12,9 +12,10 @@ Further reading:
 * http://mysqlserverteam.com/write-yourself-a-query-rewrite-plugin-part-2/
 
 ### Installing Enterprise Audit
+MySQL Enterprise Audit is delivered as a plugin and can be loaded as any [plugin](https://dev.mysql.com/doc/refman/5.7/en/server-plugin-loading.html) to MySQL. The easy way to install the audit plugin is to use the audit_log_filter_linux_install.sql script in share folder.
 
 ```
-code
+mysql -uroot -proot mysql <  mysql57/share/audit_log_filter_linux_install.sql
 ```
 ### Demo
 
