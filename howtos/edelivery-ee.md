@@ -1,4 +1,4 @@
-**[Back to Audit HOWTO](./audit.md)**
+**[Back to Agenda](./../README.md)**
 
 # Download MySQL Enterprise Edition Software
 
@@ -41,4 +41,4 @@ Download software packages by pressing on link (zip package) as show below (do n
 Well done!  
 You should now have successfully downloaded MySQL Enterprise Edition.
 
-**[Back to Audit HOWTO](./audit.md)**
+**[Back to Agenda](./../README.md)**
