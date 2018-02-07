@@ -47,7 +47,12 @@ Important columns are:
 
 ### Demo
 
-First lets create some test data
+First, if you have not already done this, lets install the rewrite plugin
+```
+mysql -uroot -proot mysql <  mysql57/share/install_rewriter.sql
+```
+
+Second, lets create some test data to play around with
 ```
 create database labb;
 use labb;
