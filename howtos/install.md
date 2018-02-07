@@ -26,6 +26,19 @@ Create soft link to MySQL binaries:
 ```
 bash$ ln -s /home/ted/src/mysql-advanced-5.7.21-linux-glibc2.12-x86_64 mysql57
 ```
+The structure should now look something like: 
+```
+/path/to/MySQL-HOWTOs/
+                      scripts/
+                      howtos/
+                      README.md                      
+                      setenv
+                      my.cnf
+                      mysql57 -> /path/to/mysql-bins
+```
+If you have any problmes starting MySQL verify that configuration in my.cnf is correct.
+Rememver that you must manually run the "bash$ . .setenv" command before executing any commands or scripts otherwice they will fail.
+
 Install/start MySQL:
 ```
 bash$ ./scripts/create_instances.sh
