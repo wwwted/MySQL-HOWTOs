@@ -51,12 +51,19 @@ First lets create some test data
 ```
 create database labb;
 use labb;
-create table testing (id int primary key auto_increment, name varchar(32), address varchar(32), age int, index (name));
+
+create table testing (
+   id int primary key auto_increment,
+   name varchar(32),
+   address varchar(32),
+   age int,
+   index (name)
+);
+
 DELIMITER $$
 CREATE PROCEDURE prepare_data()
 BEGIN
   DECLARE i INT DEFAULT 100;
-
   WHILE i < 10000 DO
     INSERT INTO labb.testing (id,name,address,age) VALUES (i,CONCAT("ted",i),CONCAT("address",i),i);
     SET i = i + 1;
