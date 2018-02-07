@@ -37,7 +37,8 @@ The structure should now look something like:
                       mysql57 -> /path/to/mysql-bins
 ```
 If you have any problmes starting MySQL verify that configuration in my.cnf is correct.
-Rememver that you must manually run the "bash$ . .setenv" command before executing any commands or scripts otherwice they will fail.
+
+!!! Rememver that you must manually run the "bash$ . .setenv" command before executing any commands or scripts otherwice they will fail !!!
 
 Install/start MySQL:
 ```
