@@ -38,6 +38,12 @@ SELECT RULE FROM INFORMATION_SCHEMA.MYSQL_FIREWALL_WHITELIST WHERE USERHOST = 't
 
 ### Demo
 In this demo we will create a user called "ted" and later set firewall in recording mode to record some statements in the whitelist.
+
+First step if you have not already done so is to install the plugin
+```
+mysql -u root -proot mysql <  mysql57/share/linux_install_firewall.sql
+```
+
 Log into mysql and run below commands as user 'root' to create our user:
 ```
 CREATE USER 'ted'@'localhost' IDENTIFIED BY 'ted';
@@ -96,6 +102,7 @@ Now lets try to run these statements
 mysql -uted -pted --force -v -v -v  < fw2.sql
 ```
 Last two statement where blocked as expected, these are new and have not been recored.
+
 If you want, set firewall in RECORDING mode again and re-read file fw2.sql and you will see that whitelist is update and then you can successfully execute the last two SELECT statments.
 
 If you want to clear forewall whitelist use command
