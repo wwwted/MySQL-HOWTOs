@@ -23,4 +23,6 @@ If you want to be able to copy-n-paste the commands from the demo sections in th
 * MySQL Performance
   * [MySQL Query Rewrite Plugin](./howtos/rewriter.md)
 
+* MySQL Backup
+
 * MySQL Cloud
