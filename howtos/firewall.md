@@ -109,6 +109,6 @@ If you want to clear forewall whitelist use command
 ```
 CALL mysql.sp_set_firewall_mode('ted@localhost', 'RESET');
 ```
-**[Back to Top](./../firewall.md)**
+**[Back to Top](./firewall.md)**
 
 **[Back to Agenda](./../README.md)**
