@@ -41,7 +41,7 @@ If you have any problmes starting MySQL verify that configuration in my.cnf is c
 **Remember, you must manually run the** `<bash$ . ./setenv">` **command in all *terminals* before executing any commands/scripts otherwice they will fail**
 
 If you want to read the markdown slides offline you have to install a plugin to you browser.
-I use this one on Chrome: https://chrome.google.com/webstore/detail/markdown-viewer/ckkdlimhmcjmikdlpkmbgfkaikojcbjk
+I use this [one](https://chrome.google.com/webstore/detail/markdown-viewer/ckkdlimhmcjmikdlpkmbgfkaikojcbjk) on Chrome and it workd well.
 
 Install/start MySQL:
 ```
