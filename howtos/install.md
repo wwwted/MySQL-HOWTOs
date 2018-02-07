@@ -38,7 +38,7 @@ The structure should now look something like:
 ```
 If you have any problmes starting MySQL verify that configuration in my.cnf is correct.
 
-**Remember, you must manually run the** `<bash$ . ./setenv">` **command in all *terminals* before executing any commands/scripts otherwice they will fail **
+**Remember, you must manually run the** `<bash$ . ./setenv">` **command in all *terminals* before executing any commands/scripts otherwice they will fail**
 
 Install/start MySQL:
 ```
