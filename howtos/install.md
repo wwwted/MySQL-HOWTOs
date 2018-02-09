@@ -14,7 +14,7 @@ Go into folder:
 ```
 bash$ cd MySQL-HOWTOs/
 ```
-Setup environment variables, these are needed to get correct paths for scrips to execute and create configuration file for MySQL.
+Setup environment variables, this is needed to get correct paths for scrips, setenv will also create initial configuration file for MySQL, this is only done if no configuration file exists.
 ```
 bash$ . ./setenv
 ```
