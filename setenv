@@ -2,7 +2,7 @@ export WS_HOME=$PWD
 export PATH=${WS_HOME}/mysql57/bin:$PATH
 
 MY_FILE="${WS_HOME}/my.cnf"
-
+[ -e $MY_FILE ] && return
 echo "[mysqld_safe]" 					> $MY_FILE
 echo "socket			= /tmp/mysql.sock"	>> $MY_FILE
 echo " "						>> $MY_FILE
