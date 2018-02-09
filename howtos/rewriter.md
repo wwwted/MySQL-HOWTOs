@@ -88,8 +88,9 @@ VALUES
   # Database
   'labb',
   # Replacement
-  'SELECT name, address, age FROM testing WHERE id = ?');
-  call query_rewrite.flush_rewrite_rules();
+  'SELECT name, address, age FROM testing WHERE id = ?'
+);
+CALL query_rewrite.flush_rewrite_rules();
   ```
 Verify that rule works
 ```
@@ -121,8 +122,9 @@ VALUES
   # Database
   'labb',
   # Replacement
-  'SELECT * FROM testing WHERE name like ? limit 10');
-  call query_rewrite.flush_rewrite_rules();
+  'SELECT * FROM testing WHERE name like ? limit 10'
+);
+CALL query_rewrite.flush_rewrite_rules();
   ```
 Verify that rule works
 ```
@@ -155,8 +157,9 @@ VALUES
   # Database
   'labb',
   # Replacement
-  'SELECT /*+ MAX_EXECUTION_TIME(10)*/ * FROM testing WHERE name like ?');
-  call query_rewrite.flush_rewrite_rules();
+  'SELECT /*+ MAX_EXECUTION_TIME(10)*/ * FROM testing WHERE name like ?'
+);
+CALL query_rewrite.flush_rewrite_rules();
   ```
 Verify that rule works
 ```
