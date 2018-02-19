@@ -11,7 +11,8 @@ If you want to be able to copy-n-paste the commands from the demo sections in th
 
 
 * MySQL Security
-  * [MySQL Enterprise Audit](./howtos/audit.md)
+  * [MySQL Enterprise Audit (5.6)](./howtos/audit.md)
+  * [MySQL Enterprise Audit (5.7)](./howtos/audit57.md)
   * [MySQL Enterprise Firewall](./howtos/firewall.md)
   * [MySQL Transparent Data Encryption](./howtos/tde.md)
 
@@ -23,6 +24,8 @@ If you want to be able to copy-n-paste the commands from the demo sections in th
 * MySQL Performance
   * [MySQL Query Rewrite Plugin](./howtos/rewriter.md)
 
-* MySQL Backup
+* MySQL Backup/Restore
+
+* MySQL Monitoring
 
 * MySQL Cloud
