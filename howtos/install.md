@@ -1,6 +1,7 @@
 **[Back to Agenda](./../README.md)**
 
-# Setup demo environment
+Setup test environment
+-------
 
 Before you can run any MySQL scripts you need to first download the MySQL binaries, there is a guide on landing page.
 
@@ -38,10 +39,14 @@ The structure should now look something like:
 ```
 If you have any problmes starting MySQL verify that configuration in my.cnf is correct.
 
-**Remember, you must manually run the** `<bash$ . ./setenv">` **command in all *terminals* before executing any commands/scripts otherwice they will fail**
+**Remember**
+> You must manually run the** `<bash$ . ./setenv">` **command in all *terminals* before executing any commands/scripts otherwice they will fail!**
 
-If you want to read the markdown slides offline you have to install a plugin to you browser.
-I use this [one](https://chrome.google.com/webstore/detail/markdown-viewer/ckkdlimhmcjmikdlpkmbgfkaikojcbjk) on Chrome and it works well.
+If you want to read the markdown slides offline you have to install a plugin to your web browser.
+I use this [one](https://chrome.google.com/webstore/detail/markdown-viewer/ckkdlimhmcjmikdlpkmbgfkaikojcbjk) for Chrome and it worked well.
+
+Running the scripts
+-----
 
 Install/start MySQL:
 ```
