@@ -2,7 +2,7 @@
 
 # MySQL Query Rewrite Plugin
 
-In this howto we are going to look at how to get started with the MySQL Query Rewrite Plugin and also show a small demo on how it works.
+In this howto we are going to look at how to get started with the MySQL Query Rewrite Plugin and also show a small demo on how it works. Remember to setup your demo environment using the guide [here](/howtos/install.md).
 
 Further reading:
 * https://dev.mysql.com/doc/refman/5.7/en/rewriter-query-rewrite-plugin.html
