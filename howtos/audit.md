@@ -91,7 +91,7 @@ SYNCHRONOUS      Log synchronously, call sync() after each request
 
 ### Demo
 
-
+Let's look at configuration of the Audit plugin:
 ```
 mysql> show global variables like '%audit%';
 +-----------------------------+--------------+
@@ -116,5 +116,20 @@ mysql> show global variables like '%audit%';
 +-----------------------------+--------------+
 ```
 
-
-
+Let's look at status variables for the Audit plugin:
+```
+mysql>  show global status like '%audit%';
++-------------------------------+-------+
+| Variable_name                 | Value |
++-------------------------------+-------+
+| audit_log_current_size        | 3987  |
+| audit_log_event_max_drop_size | 0     |
+| audit_log_events              | 9     |
+| audit_log_events_buffered     | 0     |
+| audit_log_events_filtered     | 0     |
+| audit_log_events_lost         | 0     |
+| audit_log_events_written      | 9     |
+| audit_log_total_size          | 3987  |
+| audit_log_write_waits         | 0     |
++-------------------------------+-------+
+```
