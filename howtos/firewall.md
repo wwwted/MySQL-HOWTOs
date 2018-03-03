@@ -2,7 +2,7 @@
 
 # MySQL Enterprise Firewall
 
-In this howto we are going to look at how to get started with MySQL Enterprise Firewall and also show a small demo on how it works. This feature is part of the MySQL Enterprise Edition, if you do not have access to MySQL Enteprise Binaries you can dowloaded them for evaluation purpose following this [guide](/howtos/edelivery-ee.md). Also remember to setup your demo environment using the guide [here](/howtos/install.md).
+In this howto we are going to look at how to get started with MySQL Enterprise Firewall and also show a small demo on how it works. This feature is part of the MySQL Enterprise Edition, if you do not have access to MySQL Enteprise Binaries you can download them for evaluation purpose following this [guide](/howtos/edelivery-ee.md). Also remember to setup your demo environment using the guide [here](/howtos/install.md).
 
 Further reading:
 * https://www.mysql.com/products/enterprise/firewall.html
