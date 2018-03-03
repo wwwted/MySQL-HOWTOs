@@ -26,6 +26,67 @@ audit-log=FORCE_PLUS_PERMANENT
 The second option "FORCE_PLUS_PERMANENT" will make it impossible to un-install the plugin without restarting the MySQL instance.
 
 ### Configuration
+Below are important configuration option for Audit plugin, complete list of all option can be found in the [MySQL manual](https://dev.mysql.com/doc/refman/5.6/en/audit-log-reference.html).   
+Default option is with in parentheses.
+
+*audit_log_connection_policy (ALL)*  
+```
+ALL      Log all connection events
+ERRORS   Log only failed connection events
+NONE     Do not log connection events
+```
+
+*audit_log_exclude_accounts*
+```
+List of accounts to exclude from audit log
+SET GLOBAL audit_log_exclude_accounts = 'user1@localhost,user2@localhost';
+```
+
+*audit_log_include_accounts*
+```
+List of accounts to include in audit log
+SET GLOBAL audit_log_include_accounts = 'user1@localhost,user2@localhost';
+```
+
+*audit_log_file (audit.log)*
+```
+Name of audit log
+```
+
+*audit_log_flush (OFF)*
+```
+For manual rotation of audit.log file:
+mv audit.log audit.log.1
+SET GLOBAL audit_log_flush = ON;
+```
+
+*audit_log_rotate_on_size (0)*
+```
+Automatic log rotation on size
+```
+
+*audit_log_policy (ALL)*
+```
+ALL      Log all events
+LOGINS   Log only login events
+QUERIES  Log only query events
+NONE     Log nothing (disable the audit stream)
+```
+
+*audit_log_statement_policy (ALL)*
+```
+ALL     Log all statement events
+ERRORS  Log only failed statement events
+NONE    Do not log statement events
+```
+
+*audit_log_strategy (ASYNCHRONOUS)*  
+```
+ASYNCHRONOUS     Log asynchronously, wait for space in output buffer
+PERFORMANCE      Log asynchronously, drop request if insufficient space in output buffer
+SEMISYNCHRONOUS  Log synchronously, permit caching by operating system
+SYNCHRONOUS      Log synchronously, call sync() after each request
+```
 
 
 ### Demo
