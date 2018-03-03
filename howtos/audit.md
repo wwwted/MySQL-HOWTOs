@@ -133,3 +133,19 @@ mysql>  show global status like '%audit%';
 | audit_log_write_waits         | 0     |
 +-------------------------------+-------+
 ```
+
+We can look at content in the audit log also
+```
+less mysqldata/audit.log
+```
+
+Let's test some user filters, we first need to create two users and then use include and exclude accounts to filter on users.
+```
+CREATE USER 'my1'@'localhost' IDENTIFIED BY 'my1'
+CREATE USER 'my2'@'localhost' IDENTIFIED BY 'my2'
+GRANT SELECT ON *.* TO 'my1'@'localhost';
+GRANT SELECT ON *.* TO 'my2'@'localhost';
+
+```
+
+**[Back to Agenda](./../README.md)**
