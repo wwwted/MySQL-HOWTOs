@@ -6,6 +6,8 @@ In this howto we are going to look at how to get started with MySQL Enterprise A
 
 In the MySQL Enterprise Editition we also have commercial edition of MySQL workbench where you can install/remove and search in audit logs via a graphical interface, more information [here](https://dev.mysql.com/doc/workbench/en/wb-audit-inspector.html).
 
+Below guide is done using audit plugin for MySQL 5.7.21, several enhancements where added in version 5.7.21 of MySQL and I highly recomend to use this version or later ones to fully benefit from all new featues like compression, encryption, new JSON format and SQL interface to read audit data.
+
 Further reading:
 * https://www.mysql.com/products/enterprise/audit.html
 * https://dev.mysql.com/doc/refman/5.7/en/audit-log.html
