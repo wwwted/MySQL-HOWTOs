@@ -105,7 +105,7 @@ Last two statement where blocked as expected, these are new and have not been re
 
 If you want, set firewall in RECORDING mode again and re-read file fw2.sql and you will see that whitelist is update and then you can successfully execute the last two SELECT statments.
 
-If you want to clear forewall whitelist use command
+If you want to clear firewall whitelist use command:
 ```
 CALL mysql.sp_set_firewall_mode('ted@localhost', 'RESET');
 ```
