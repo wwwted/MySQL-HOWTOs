@@ -6,11 +6,11 @@ In this howto we are going to look at how to get started with MySQL Enterprise A
 
 Further reading:
 * https://www.mysql.com/products/enterprise/audit.html
-* https://dev.mysql.com/doc/refman/5.7/en/audit-log.html
+* https://dev.mysql.com/doc/refman/5.6/en/audit-log.html
 
 
 ### Installing Enterprise Audit
-MySQL Enterprise Audit is delivered as a plugin and can be loaded as any [plugin](https://dev.mysql.com/doc/refman/5.7/en/server-plugin-loading.html) to MySQL. The easy way to install the audit plugin is to use the audit_log_filter_linux_install.sql script in share folder.
+MySQL Enterprise Audit is delivered as a plugin and can be loaded as any [plugin](https://dev.mysql.com/doc/refman/5.6/en/server-plugin-loading.html) to MySQL. 
 
 ```
 mysql -uroot -proot mysql <  mysql57/share/audit_log_filter_linux_install.sql
