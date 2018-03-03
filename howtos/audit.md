@@ -178,7 +178,7 @@ mysql> show global variables like 'audit_log_exclude_accounts';
 | audit_log_exclude_accounts | app@localhost |
 +----------------------------+---------------+
 ```
-Let's use one terminal to trace activities in autid log like:
+Let's use one terminal to trace activities in audit log like:
 ```
 bash$ tail -f mysqldata/audit.log
 ```
@@ -248,6 +248,8 @@ Not we are seeing some data in the Audit log:
  </AUDIT_RECORD>
 ```
 We see the connect entry and also the show databsases statement recorded in the audit log.
+
+In MySQL 5.6 we can filter on basic things like; users, type of event (connect, query or all) and also filter if event was successfull or failed. In later versions of MySQL we have much more advanced filter options, this is explained in more detais in audit filtering for MySQL 5.7 in the agenda.
 
 In the MySQL Enterprise Editition we also have commercial edition of MySQL workbench where you can install/remove and search in audit logs via a graphical interface, more information [here](https://dev.mysql.com/doc/workbench/en/wb-audit-inspector.html).
 
