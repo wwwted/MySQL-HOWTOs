@@ -249,7 +249,7 @@ Not we are seeing some data in the Audit log:
 ```
 We see the connect entry and also the show databsases statement recorded in the audit log.
 
-In MySQL 5.6 we can filter on basic things like; users, type of event (connect, query or all) and also filter if event was successfull or failed. In later versions of MySQL we have much more advanced filter options, this is explained in more detais in audit filtering for MySQL 5.7 in the agenda.
+In MySQL 5.6 we can filter on basic things like; users, type of event (connect, query or all) and also filter if event was successfull or failed. In later versions of MySQL we have much more advanced filter options, this is explained in more detais in audit filtering for [MySQL 5.7](/howtos/audit57.md) in the agenda.
 
 In the MySQL Enterprise Editition we also have commercial edition of MySQL workbench where you can install/remove and search in audit logs via a graphical interface, more information [here](https://dev.mysql.com/doc/workbench/en/wb-audit-inspector.html).
 
