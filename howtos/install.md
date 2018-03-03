@@ -70,7 +70,7 @@ bash$ ./scripts/clean.sh
 ```
 Login to MySQL client:
 ```
-bash$ mysql -u root -proot mysql -S/tmp/mysql.sock
+bash$ mysql -uroot -proot mysql -S/tmp/mysql.sock
 ```
 
 
