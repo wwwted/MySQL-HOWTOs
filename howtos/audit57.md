@@ -81,6 +81,80 @@ PERFORMANCE      Log asynchronously, drop request if insufficient space in outpu
 SEMISYNCHRONOUS  Log synchronously, permit caching by operating system
 SYNCHRONOUS      Log synchronously, call sync() after each request
 ```
-All basic filtering options are described in demo for MySQL 5.6 [here](audit.md). In this demo we will focus on using our new enhanced JSON filters.
+All basic filtering options are described in howto for MySQL 5.6 [here](audit.md). In this howto we will focus on using our new enhanced JSON filters.
+
+### Filtering functions
+
+*audit_log_filter_flush()*  
+If we modify the audit tables directly we need to call filter flush() for this to take effekt.
+
+*audit_log_filter_remove_filter(\<filter\>)*  
+Remove a filter.
+ 
+*audit_log_filter_remove_user(\<user\>)*  
+Remove a user account from all filters.
+
+*audit_log_filter_set_filter(\<filter-name\>,\<JSON filter\>)*  
+Create a audit filter.
+
+*audit_log_filter_set_user(\<user-name\>,\<filter-name\>)*  
+Start filtering a user account.
+
+*audit_log_read()*  
+Read audit log records. More samples in demo below.
+
+*audit_log_read_bookmark()*  
+Set bookmark for read() function above, the function will return current position in audit log file.
 
 ### Demo
+The new audit plugin uses JSON format describing filtering rules. These filters are then handled using a set of stored procedures. The filters can then be assigned to users.
+
+Two interal in mysql schema, tables audit_log_filter and audit_log_user store all data needed by the audit plugin.
+
+Before we create some filter lets look at configuration parameters
+```
+mysql> SELECT *  FROM performance_schema.global_variables WHERE VARIABLE_NAME LIKE 'audit%';
++-----------------------------+----------------+
+| VARIABLE_NAME               | VARIABLE_VALUE |
++-----------------------------+----------------+
+| audit_log_buffer_size       | 1048576        |
+| audit_log_compression       | NONE           |
+| audit_log_connection_policy | ALL            |
+| audit_log_current_session   | OFF            |
+| audit_log_encryption        | NONE           |
+| audit_log_exclude_accounts  | app@localhost  |
+| audit_log_file              | audit.log      |
+| audit_log_filter_id         | 0              |
+| audit_log_flush             | OFF            |
+| audit_log_format            | NEW            |
+| audit_log_include_accounts  |                |
+| audit_log_policy            | ALL            |
+| audit_log_read_buffer_size  | 1048576        |
+| audit_log_rotate_on_size    | 0              |
+| audit_log_statement_policy  | ALL            |
+| audit_log_strategy          | ASYNCHRONOUS   |
++-----------------------------+----------------+
+```
+Lets change audit log format to JSON.  
+The `audit_log_format`variable can not be changed dynamically, we need to add `audit_log_format="JSON"` to our my.cnf file and restart the MySQL daemon.  
+Add two lines below to your configuration file (under \[mysqld\] section):
+```
+audit_log_format="JSON"
+audit_log_file="audit.json"
+```
+Restart MySQL:
+```
+bash$ ./scripts/restart.sh 
+```
+Lets look at new configuration after restart
+```
+mysql> SELECT *  FROM performance_schema.global_variables WHERE VARIABLE_NAME IN ('audit_log_format','audit_log_file');
++------------------+----------------+
+| VARIABLE_NAME    | VARIABLE_VALUE |
++------------------+----------------+
+| audit_log_file   | audit.json     |
+| audit_log_format | JSON           |
++------------------+----------------+
+```
+
+
