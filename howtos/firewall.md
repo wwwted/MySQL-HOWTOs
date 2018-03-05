@@ -10,17 +10,17 @@ Further reading:
 * https://www.mysql.com/products/enterprise/firewall.html
 * https://dev.mysql.com/doc/refman/5.7/en/firewall-reference.html
 
-### Installing Enterprise Audit
-MySQL Enterprise Audit is delivered as a plugin and can be loaded as any [plugin](https://dev.mysql.com/doc/refman/5.7/en/server-plugin-loading.html) to MySQL. The easy way to install the audit plugin is to use the audit_log_filter_linux_install.sql script in share folder.
+### Installing Enterprise Firewall
+MySQL Enterprise Firewall is delivered as a plugin and can be loaded as any [plugin](https://dev.mysql.com/doc/refman/5.7/en/server-plugin-loading.html) to MySQL. The easy way to install the firewall plugin is to use the linux_install_firewall.sql script in share folder. (Or use the respective Windows installation file in the same directory.)
 
 ```
 mysql -u root -proot mysql <  mysql57/share/linux_install_firewall.sql
 ```
-Look at configuration of rewrite plugin:
+Look at configuration of firewall plugin:
 ```
 mysql> SHOW GLOBAL VARIABLES LIKE '%firewall%';
 ```
-Look at status of rewrite plugin:
+Look at status of firewall plugin:
 ```
 mysql> SHOW GLOBAL STATUS LIKE '%firewall%';
 ```
