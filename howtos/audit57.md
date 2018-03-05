@@ -189,7 +189,7 @@ There are 3 different main classes (with subclasses) we can use to create filter
 |              | update	              | Table update statements, such as UPDATE                            |  
 
 Let's create some more filters and things will be a bit clearer hopefully, we will now create a filter that only filters out connection events and assign this filter to a user named 'joe'@'localhost'.  
-Firts we need to create the acocunt 'joe'@localhost
+First we need to create the acocunt 'joe'@localhost
 ```
 
 ```
