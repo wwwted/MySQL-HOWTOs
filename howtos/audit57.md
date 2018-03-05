@@ -18,7 +18,7 @@ MySQL Enterprise Audit is delivered as a plugin and can be loaded as any [plugin
 The prefered way to install the audit plugin as of MySQL 5.7 is to use the audit_log_filter_linux_install.sql script in share folder, this will not only load the plugin but also create additional logic for handeling our advanced filtering.
 
 ```
-mysql -uroot -proot mysql <  mysql57/share/audit_log_filter_linux_install.sql
+bash$ mysql -uroot -proot mysql <  mysql57/share/audit_log_filter_linux_install.sql
 ```
 
 Verify that plugin is active:
@@ -136,7 +136,7 @@ mysql> SELECT *  FROM performance_schema.global_variables WHERE VARIABLE_NAME LI
 +-----------------------------+----------------+
 ```
 Lets change audit log format to JSON.  
-The `audit_log_format`variable can not be changed dynamically, we need to add `audit_log_format="JSON"` to our my.cnf file and restart the MySQL daemon.  
+The `audit_log_format`variable can not be changed dynamically, we need to add `audit_log_format="JSON"` to our my.cnf file and restart the MySQL daemon. It's also good practice to change name of audit file when changing format, let's call the new one audit.json.
 Add two lines below to your configuration file (under \[mysqld\] section):
 ```
 audit_log_format="JSON"
@@ -156,5 +156,39 @@ mysql> SELECT *  FROM performance_schema.global_variables WHERE VARIABLE_NAME IN
 | audit_log_format | JSON           |
 +------------------+----------------+
 ```
+Now it's time to create some rules, we will start by creating a simple filter that will log everything for everyone
+```
+mysql> SELECT audit_log_filter_set_filter('log_all', '{ "filter": { "log": true } }');
+mysql> SELECT audit_log_filter_set_user('%', 'log_all');
+```
+Let me break down what we just executed, in first call we created a filter and named this filter 'log_all', the filter itself only specifies the mandatory top tag "filter" and the value of the sub tag "log:true".  
 
+The auditing is now working for all new sessions connecting, re-connect and run some statements and look inside the audit file `mysqldata/audit.json`.
 
+If we want to disable auditing we can do this by setting `"log":false` like:
+```
+mysql> SELECT audit_log_filter_set_filter('log_all', '{ "filter": { "log": false } }');
+```
+You should now see that logging stopped.  
+
+All filters are created using JSON format, I will not go into details explaining JSON here but if you are new to JSON there some information available [here](https://dev.mysql.com/doc/refman/5.7/en/json.html).  
+Our JSON documents for filters have the syntax: `{ "filter": actions }`  
+Where actions will describe how filtering is done, our [manual](https://dev.mysql.com/doc/refman/5.7/en/audit-log-filtering.html) describes how to define different actions and have many samples of how to create different filters.  
+
+There are 3 different main classes (with subclasses) we can use to create filters;
+| Event        | Class	Event Subclass |	Description                                                        |
+|--------------| -------------------  | -------------------------------------------------------------------| 
+| connection   |	connect	             | Connection initiation (successful or unsuccessful)                 |
+|              | change_user          |	User re-authentication with different user/password during session |
+|              | disconnect	          | Connection termination                                             |
+| general	     | status	              | General operation information                                      |
+| table_access |	read	                | Table read statements, such as SELECT or INSERT INTO ... SELECT    |
+|              | delete	              | Table delete statements, such as DELETE or TRUNCATE TABLE          |
+|              | insert	              | Table insert statements, such as INSERT or REPLACE                 |
+|              | update	              | Table update statements, such as UPDATE                            |
+
+Let's create some more filters and things will be a bit clearer hopefully, we will now create a filter that only filters out connection events and assign this filter to a user named 'joe'@'localhost'.  
+Firts we need to create the acocunt 'joe'@localhost
+```
+
+```
