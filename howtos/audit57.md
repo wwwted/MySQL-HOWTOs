@@ -176,6 +176,7 @@ Our JSON documents for filters have the syntax: `{ "filter": actions }`
 Where actions will describe how filtering is done, our [manual](https://dev.mysql.com/doc/refman/5.7/en/audit-log-filtering.html) describes how to define different actions and have many samples of how to create different filters.  
 
 There are 3 different main classes (with subclasses) we can use to create filters;
+
 | Event        | Class	Event Subclass |	Description                                                        |
 |--------------| -------------------  | -------------------------------------------------------------------| 
 | connection   |	connect	             | Connection initiation (successful or unsuccessful)                 |
@@ -185,7 +186,7 @@ There are 3 different main classes (with subclasses) we can use to create filter
 | table_access |	read	                | Table read statements, such as SELECT or INSERT INTO ... SELECT    |
 |              | delete	              | Table delete statements, such as DELETE or TRUNCATE TABLE          |
 |              | insert	              | Table insert statements, such as INSERT or REPLACE                 |
-|              | update	              | Table update statements, such as UPDATE                            |
+|              | update	              | Table update statements, such as UPDATE                            |  
 
 Let's create some more filters and things will be a bit clearer hopefully, we will now create a filter that only filters out connection events and assign this filter to a user named 'joe'@'localhost'.  
 Firts we need to create the acocunt 'joe'@localhost
