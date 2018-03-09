@@ -16,13 +16,14 @@ If you want to be able to copy-n-paste the commands from the demo sections in th
   * [MySQL Enterprise Firewall](./howtos/firewall.md)
   * [MySQL Transparent Data Encryption](./howtos/tde.md)
 
+* MySQL Performance
+  * [MySQL Query Rewrite Plugin](./howtos/rewriter.md)
+
 * MySQL High Avalability
+  * [MySQL Replication](./howtos/repl.md)
   * [MySQL InnoDB Cluster](./howtos/idc.md)
   * [MySQL Group Replication](./howtos/gr.md)
   * [MySQL NDB Cluster](https://github.com/wwwted/ndb-cluster-workshop)
-
-* MySQL Performance
-  * [MySQL Query Rewrite Plugin](./howtos/rewriter.md)
 
 * MySQL Backup/Restore
 
