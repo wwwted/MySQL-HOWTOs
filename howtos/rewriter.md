@@ -78,7 +78,7 @@ DELIMITER ;
 
 CALL prepare_data();
 ```
-#### "Restrict access to some columns", statements with SELECT * can be replaced by specified list of columns.
+#### "Restrict access to some columns", statements with SELECT * will be replaced by specified list of columns.
 ```
 INSERT INTO query_rewrite.rewrite_rules ( pattern, pattern_database, replacement )
 VALUES
