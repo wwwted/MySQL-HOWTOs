@@ -22,7 +22,7 @@ If you want to be able to copy-n-paste the commands from the demo sections in th
 
 * MySQL High Avalability
   * [MySQL Replication](./howtos/repl.md)
-  * [MySQL InnoDB Cluster (local sandbox)](./howtos/idc.md)
+  * [MySQL InnoDB Cluster (local sandbox)](https://github.com/wwwted/MySQL-InnoDB-Cluster-local-sandbox)
   * [MySQL InnoDB Cluster (3 VM setup)](./howtos/gr.md)
   * [MySQL NDB Cluster](https://github.com/wwwted/ndb-cluster-workshop)
 
