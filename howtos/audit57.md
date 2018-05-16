@@ -142,6 +142,12 @@ Add two lines below to your configuration file (under \[mysqld\] section):
 audit_log_format="JSON"
 audit_log_file="audit.json"
 ```
+If you add configuration changes above for audit plugin and the audit plugin is not loaded/enabled MySQL will fail on restart command, by adding "loose-" as prefix to configuration parameters MySQL will not fail on restart due to unknown configurtion parameters.
+```
+loose-audit_log_format	="JSON"
+loose-audit_log_file="audit.json" 
+```
+
 Restart MySQL:
 ```
 bash$ ./scripts/restart.sh 
@@ -191,5 +197,5 @@ There are 3 different main classes (with subclasses) we can use to create filter
 Let's create some more filters and things will be a bit clearer hopefully, we will now create a filter that only filters out connection events and assign this filter to a user named 'joe'@'localhost'.  
 First we need to create the acocunt 'joe'@localhost
 ```
-
+TBC
 ```
