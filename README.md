@@ -7,6 +7,8 @@ Some howtos are under construction but Audit, Firewall and the Query Rewrite are
 
 If you want to be able to copy-n-paste the commands from the demo sections in the howto's use my simple install script to setup MySQL, more information [here](howtos/install.md). Some features require MySQL Enterprise Edition and you can follow this [guide](./howtos/edelivery-ee.md) to download MySQL Enterprise Edition.
 
+All of the guides should work with both MySQL 5.7 and MySQL 8.
+
 ----------
 
 
