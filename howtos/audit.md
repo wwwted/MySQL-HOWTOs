@@ -29,13 +29,13 @@ mysql> SHOW PLUGINS;
 | audit_log                  | ACTIVE   | AUDIT              | audit_log.so | PROPRIETARY |
 +----------------------------+----------+--------------------+--------------+-------------+
 ```
-If you have problems loading the plugin verify that yoy have the plugin in available in folder `mysql57/lib/plugin/audit_log.so`. If you have a different path to your plugins verify that your configuration parameter *plugin_dir* is correclty set, see bellow for our test environment.
+If you have problems loading the plugin verify that yoy have the plugin in available in folder `mysqlsrc/lib/plugin/audit_log.so`. If you have a different path to your plugins verify that your configuration parameter *plugin_dir* is correclty set, see bellow for our test environment.
 ```
 mysql> show variables like 'plugin_dir';
 +---------------+-----------------------------------------------------+
 | Variable_name | Value                                               |
 +---------------+-----------------------------------------------------+
-| plugin_dir    | /home/ted/gitrepos/MySQL-HOWTOs/mysql57/lib/plugin/ |
+| plugin_dir    | /home/ted/gitrepos/MySQL-HOWTOs/mysqlsrc/lib/plugin/ |
 +---------------+-----------------------------------------------------+
 ```
 
