@@ -18,7 +18,7 @@ MySQL Enterprise Audit is delivered as a plugin and can be loaded as any [plugin
 The prefered way to install the audit plugin as of MySQL 5.7 is to use the audit_log_filter_linux_install.sql script in share folder, this will not only load the plugin but also create additional logic for handeling our advanced filtering.
 
 ```
-bash$ mysql -uroot -proot mysql <  mysql57/share/audit_log_filter_linux_install.sql
+bash$ mysql -uroot -proot mysql <  mysqlsrc/share/audit_log_filter_linux_install.sql
 ```
 
 Verify that plugin is active:
@@ -30,13 +30,13 @@ mysql> SELECT PLUGIN_NAME, PLUGIN_STATUS FROM INFORMATION_SCHEMA.PLUGINS WHERE P
 | audit_log   | ACTIVE        |
 +-------------+---------------+
 ```
-If you have problems loading the plugin verify that you have the plugin is located in folder `mysql57/lib/plugin/audit_log.so`. If you have a different path to your plugin's verify that your configuration parameter *plugin_dir* is correclty set, see bellow for our test environment.
+If you have problems loading the plugin verify that you have the plugin is located in folder `mysqlsrc/lib/plugin/audit_log.so`. If you have a different path to your plugin's verify that your configuration parameter *plugin_dir* is correclty set, see bellow for our test environment.
 ```
 mysql> show variables like 'plugin_dir';
 +---------------+-----------------------------------------------------+
 | Variable_name | Value                                               |
 +---------------+-----------------------------------------------------+
-| plugin_dir    | /home/ted/gitrepos/MySQL-HOWTOs/mysql57/lib/plugin/ |
+| plugin_dir    | /home/ted/gitrepos/MySQL-HOWTOs/mysqlsrc/lib/plugin/ |
 +---------------+-----------------------------------------------------+
 ```
 
