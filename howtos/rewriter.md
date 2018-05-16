@@ -168,6 +168,16 @@ ERROR 3024 (HY000): Query execution was interrupted, maximum statement execution
 ```
 Works as expected, query was interupted after 10ms.
 
+#### Remove the plugin
+The rewrite plugin can be removed by running:
+```
+mysql -uroot -proot mysql < mysqlsrc/share/uninstall_rewriter.sql
+```
+To remove the rest run:
+```
+mysql> drop database labb;
+```
+
 **[Back to Top](./rewriter.md)**
 
 **[Back to Agenda](./../README.md)**
