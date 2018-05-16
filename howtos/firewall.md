@@ -14,7 +14,7 @@ Further reading:
 MySQL Enterprise Firewall is delivered as a plugin and can be loaded as any [plugin](https://dev.mysql.com/doc/refman/5.7/en/server-plugin-loading.html) to MySQL. The easy way to install the firewall plugin is to use the linux_install_firewall.sql script in share folder. (Or use the respective Windows installation file in the same directory.)
 
 ```
-mysql -u root -proot mysql <  mysql57/share/linux_install_firewall.sql
+mysql -u root -proot mysql <  mysqlsrc/share/linux_install_firewall.sql
 ```
 Look at configuration of firewall plugin:
 ```
@@ -43,7 +43,7 @@ In this demo we will create a user called "ted" and later set firewall in record
 
 First step if you have not already done so is to install the plugin
 ```
-mysql -u root -proot mysql <  mysql57/share/linux_install_firewall.sql
+mysql -u root -proot mysql <  mysqlsrc/share/linux_install_firewall.sql
 ```
 
 Log into mysql and run below commands as user 'root' to create our user:
