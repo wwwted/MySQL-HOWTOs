@@ -25,7 +25,7 @@ bash$ chmod +x ./scripts/*
 ```
 Create soft link to MySQL binaries:
 ```
-bash$ ln -s /home/ted/src/mysql-advanced-5.7.21-linux-glibc2.12-x86_64 mysql57
+bash$ ln -s /home/ted/src/mysql-advanced-5.7.21-linux-glibc2.12-x86_64 mysqlsrc
 ```
 The structure should now look something like: 
 ```
@@ -35,7 +35,7 @@ The structure should now look something like:
                       README.md                      
                       setenv
                       my.cnf
-                      mysql57 -> /path/to/mysql-bins
+                      mysqlsrc -> /path/to/mysql-binaries (MySQL 5.7 or 8.0)
 ```
 If you have any problmes starting MySQL verify that configuration in my.cnf is correct.
 
