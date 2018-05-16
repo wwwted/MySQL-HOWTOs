@@ -16,7 +16,7 @@ The MySQL Query Rewrite Plugin is delivered as a plugin and can be loaded as any
 The easy way to install the audit plugin and all needed stuff around it (schemas/tables/procedures) is to use the install_rewriter.sql script in share folder.
 
 ```
-mysql -uroot -proot mysql <  mysql57/share/install_rewriter.sql
+mysql -uroot -proot mysql <  mysqlsrc/share/install_rewriter.sql
 ```
 Look at configuration of rewrite plugin:
 ```
@@ -49,7 +49,7 @@ Important columns are:
 
 First, if you have not already done this, lets install the rewrite plugin
 ```
-mysql -uroot -proot mysql <  mysql57/share/install_rewriter.sql
+mysql -uroot -proot mysql <  mysqlsrc/share/install_rewriter.sql
 ```
 
 Second, lets create some test data to play around with
