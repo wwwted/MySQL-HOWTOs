@@ -6,8 +6,8 @@ if [ -z "$WS_HOME" ]; then
 fi
 
 echo "Stopping mysql..."
-$WS_HOME/mysql57/bin/mysqladmin -S/tmp/mysql.sock -uroot -proot shutdown
-$WS_HOME/mysql57/bin/mysqladmin -S/tmp/mysql.sock -uroot shutdown
+$WS_HOME/mysqlsrc/bin/mysqladmin -S/tmp/mysql.sock -uroot -proot shutdown
+$WS_HOME/mysqlsrc/bin/mysqladmin -S/tmp/mysql.sock -uroot shutdown
 
 echo "pgrep mysql...."
 pgrep mysql -fla
@@ -21,10 +21,10 @@ echo "creating datadir ..."
 mkdir $WS_HOME/mysqldata
 
 echo "initialize datadir.... "
-$WS_HOME/mysql57/bin/mysqld --initialize-insecure --basedir=$WS_HOME/mysql57 --datadir=$WS_HOME/mysqldata
+$WS_HOME/mysqlsrc/bin/mysqld --initialize-insecure --basedir=$WS_HOME/mysqlsrc --datadir=$WS_HOME/mysqldata
 
 echo "starting mysql ..."
-$WS_HOME/mysql57/bin/mysqld_safe --defaults-file=$WS_HOME/my.cnf --ledir=$WS_HOME/mysql57/bin &
+$WS_HOME/mysqlsrc/bin/mysqld_safe --defaults-file=$WS_HOME/my.cnf --ledir=$WS_HOME/mysqlsrc/bin &
 
 sleep 5;
 
@@ -34,5 +34,5 @@ echo "Press <ENTER> to continue"
 read
 
 echo "setting password for root ..."
-$WS_HOME/mysql57/bin/mysql -uroot -S/tmp/mysql.sock -se "SET sql_log_bin=0;set password='root'"
+$WS_HOME/mysqlsrc/bin/mysql -uroot -S/tmp/mysql.sock -se "SET sql_log_bin=0;set password='root'"
 

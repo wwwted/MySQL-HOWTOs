@@ -6,8 +6,8 @@ if [ -z "$WS_HOME" ]; then
 fi
 
 echo "stopping mysql..."
-$WS_HOME/mysql57/bin/mysqladmin -S/tmp/mysql.sock -uroot -proot shutdown
-$WS_HOME/mysql57/bin/mysqladmin -S/tmp/mysql.sock -uroot shutdown
+$WS_HOME/mysqlsrc/bin/mysqladmin -S/tmp/mysql.sock -uroot -proot shutdown
+$WS_HOME/mysqlsrc/bin/mysqladmin -S/tmp/mysql.sock -uroot shutdown
 
 echo "pgrep mysql...."
 pgrep mysql -fla

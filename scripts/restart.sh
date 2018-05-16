@@ -6,8 +6,8 @@ if [ -z "$WS_HOME" ]; then
 fi  
 
 echo "stopping mysqld ..."
-$WS_HOME/mysql57/bin/mysqladmin -S/tmp/mysql.sock -uroot -proot shutdown
+$WS_HOME/mysqlsrc/bin/mysqladmin -S/tmp/mysql.sock -uroot -proot shutdown
 sleep 5
 echo "starting MySQL ..."
-$WS_HOME/mysql57/bin/mysqld_safe --defaults-file=$WS_HOME/my.cnf --ledir=$WS_HOME/mysql57/bin &
+$WS_HOME/mysqlsrc/bin/mysqld_safe --defaults-file=$WS_HOME/my.cnf --ledir=$WS_HOME/mysqlsrc/bin &
 

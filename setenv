@@ -1,5 +1,10 @@
 export WS_HOME=$PWD
-export PATH=${WS_HOME}/mysql57/bin:$PATH
+export PATH=${WS_HOME}/mysqlsrc/bin:$PATH
+
+[ ! -e ${WS_HOME}/mysqlsrc/bin/mysql ] && echo "Can not find MySQL binaries, please create mysqlsrc link (${WS_HOME}/mysqlsrc) to MySQL binaries" && return 1;
+
+version=`${WS_HOME}/mysqlsrc/bin/mysql --version | cut -d',' -f1 | awk '{print $5;}' | cut -d'.' -f1,2`
+echo "MySQL Version ($version)"
 
 MY_FILE="${WS_HOME}/my.cnf"
 [ -e $MY_FILE ] && return
@@ -7,7 +12,7 @@ echo "[mysqld_safe]" 					> $MY_FILE
 echo "socket			= /tmp/mysql.sock"	>> $MY_FILE
 echo " "						>> $MY_FILE
 echo "[mysqld]"						>> $MY_FILE
-echo "basedir			= $WS_HOME/mysql57"	>> $MY_FILE
+echo "basedir			= $WS_HOME/mysqlsrc"	>> $MY_FILE
 echo "datadir			= $WS_HOME/mysqldata"	>> $MY_FILE
 echo "port			= 3306"			>> $MY_FILE
 echo "secure_file_priv	= /tmp"				>> $MY_FILE

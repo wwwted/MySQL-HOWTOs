@@ -6,5 +6,5 @@ if [ -z "$WS_HOME" ]; then
 fi  
 
 echo "starting MySQL ..."
-$WS_HOME/mysql57/bin/mysqld_safe --defaults-file=$WS_HOME/my.cnf --ledir=$WS_HOME/mysql57/bin &
+$WS_HOME/mysqlsrc/bin/mysqld_safe --defaults-file=$WS_HOME/my.cnf --ledir=$WS_HOME/mysqlsrc/bin &
 sleep 5
