@@ -43,7 +43,7 @@ If you have any problmes starting MySQL verify that configuration in my.cnf is c
 > **You must manually run the** `bash$ . ./setenv` **command in all *terminals* before executing any commands/scripts otherwice they will fail!**
 
 If you want to read the markdown slides offline you have to install a plugin to your web browser.
-I use this [one](https://chrome.google.com/webstore/detail/markdown-viewer/ckkdlimhmcjmikdlpkmbgfkaikojcbjk) for Chrome and it worked well.
+I use this [one](https://chrome.google.com/webstore/detail/markdown-viewer/ckkdlimhmcjmikdlpkmbgfkaikojcbjk) for Chrome and it worked well, open new tab/window and type "file:///" and browse to the catalogue with file "/README.md"
 
 Running the scripts
 -----
