@@ -28,6 +28,8 @@ All of the guides should work with both MySQL 5.7 and MySQL 8.
   * [MySQL InnoDB Cluster (3 VM setup)](./howtos/gr.md)
   * [MySQL NDB Cluster](https://github.com/wwwted/ndb-cluster-workshop)
 
+* MySQL Document Store
+
 * MySQL Backup/Restore
 
 * MySQL Monitoring
