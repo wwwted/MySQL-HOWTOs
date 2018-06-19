@@ -16,6 +16,7 @@ read
 
 echo "removing datadir ..."
 rm -fr $WS_HOME/mysqldata/*
+rm -f $WS_HOME/my.cnf
 
 echo "Done!"
 du -sh $WS_HOME/

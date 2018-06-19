@@ -16,6 +16,6 @@ echo "basedir			= $WS_HOME/mysqlsrc"	>> $MY_FILE
 echo "datadir			= $WS_HOME/mysqldata"	>> $MY_FILE
 echo "port			= 3306"			>> $MY_FILE
 echo "secure_file_priv	= /tmp"				>> $MY_FILE
-# [ $version="8.0" ] && echo "default_authentication_plugin = mysql_native_password" >> $MY_FILE
+[ $version="8.0" ] && echo "default_authentication_plugin = mysql_native_password" >> $MY_FILE
 echo " "						>> $MY_FILE
 

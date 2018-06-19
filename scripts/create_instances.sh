@@ -35,4 +35,7 @@ read
 
 echo "setting password for root ..."
 $WS_HOME/mysqlsrc/bin/mysql -uroot -S/tmp/mysql.sock -se "SET sql_log_bin=0;set password='root'"
+echo "Use old native password for root ..."
+$WS_HOME/mysqlsrc/bin/mysql -uroot -proot -S/tmp/mysql.sock -se "SET sql_log_bin=0;ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'root'"
+
 
