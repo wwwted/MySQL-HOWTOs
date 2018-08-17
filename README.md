@@ -25,7 +25,7 @@ All of the guides should work with both MySQL 5.7 and MySQL 8.
 * MySQL High Avalability
   * [MySQL Replication](./howtos/repl.md)
   * [MySQL InnoDB Cluster (local sandbox)](https://github.com/wwwted/MySQL-InnoDB-Cluster-local-sandbox)
-  * [MySQL InnoDB Cluster (3 VM setup)](./howtos/gr.md)
+  * [MySQL InnoDB Cluster (3 VM setup)](https://github.com/wwwted/MySQL-InnoDB-Cluster-3VM-Setup)
   * [MySQL NDB Cluster](https://github.com/wwwted/ndb-cluster-workshop)
 
 * MySQL Document Store
