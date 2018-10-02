@@ -20,4 +20,3 @@ rm -f $WS_HOME/my.cnf
 
 echo "Done!"
 du -sh $WS_HOME/
-
