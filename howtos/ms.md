@@ -53,7 +53,7 @@ Import data into new multi-source slave:
 mysql -u<user> -p<pass> < dumpM1_nopurge.sql
 mysql -u<user> -p<pass> < dumpM2_nopurge.sql
 ```
-Clear current state of master and set GTID_PURGED to the list of both values collected earlier:
+Clear GTID state of slave server and set GTID_PURGED to the list of both values collected earlier:
 ```
 mysql> RESET MASTER;
 mysql> SET GLOBAL GTID_PURGED="<Master1 GTID_PURGED>,<Master2 GTID_PURGED>";
