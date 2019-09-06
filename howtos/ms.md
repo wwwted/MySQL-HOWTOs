@@ -9,7 +9,7 @@ We will also set up a replication filter to only apply data from some of the dat
 We have already 2 master up and running and we want filter one database from each.
 Lets call them master1 and master2 with databases master1 and master2 to make it easy.
 
-
+##### Configuration of masters
 First step will be to make sure that both the masters have GTID replication enabled.
 Configuration (my.cnf) needed on master servers will be:
 ```
@@ -27,6 +27,8 @@ Next step is to create a user for replication on both master servers:
 mysql> CREATE USER 'repl_user'@'slave-host' IDENTIFIED BY 'repl_pass';
 mysql> GRANT REPLICATION SLAVE ON *.* TO 'repl_user'@'slave-host';
 ```
+
+##### Provisioning of data to new multi-source slave
 
 Now it's time to provision some data to our slave, step one is to run mysqldump on master databases:
 (we only dump database master1 from master1 and master2 from master2)
@@ -57,6 +59,8 @@ mysql> RESET MASTER;
 mysql> SET GLOBAL GTID_PURGED="<Master1 GTID_PURGED>,<Master2 GTID_PURGED>";
 ```
 
+##### Configure and start multi-source replication
+
 Now it's time to configure the replication channels and set the filter rule (filters on slave will be for all channels):
 ```
 mysql> CHANGE MASTER TO MASTER_HOST=<master-host>, MASTER_USER="repl", MASTER_PASSWORD="repl", MASTER_AUTO_POSITION=1 FOR CHANNEL "master1";
@@ -73,6 +77,8 @@ You can now looks at status with:
 mysql> SHOW SLAVE STATUS FOR CHANNEL "master1"\G
 mysql> SHOW SLAVE STATUS FOR CHANNEL "master2"\G
 ```
+
+##### Setup your own multi-source sandbox environment
 
 If you want to play around with Multi-Source replication and whant to jumpstart a sandbox environment then you might want to look at my scripts in this [folder](/multi-source).
 The only requirement is to have MySQL (5.7) installed and add the path to binaries to start of scripts, after this you simply run:
