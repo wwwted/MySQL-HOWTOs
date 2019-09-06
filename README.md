@@ -28,6 +28,9 @@ All of the guides should work with both MySQL 5.7 and MySQL 8.
   * [MySQL InnoDB Cluster (3 VM setup)](https://github.com/wwwted/MySQL-InnoDB-Cluster-3VM-Setup)
   * [MySQL NDB Cluster](https://github.com/wwwted/ndb-cluster-workshop)
 
+* MySQL Replication
+  * [Setting up multi-source replication (MySQL 5.7 and GTID)](./howtos/ms.md)
+
 * MySQL Document Store
 
 * MySQL Backup/Restore
