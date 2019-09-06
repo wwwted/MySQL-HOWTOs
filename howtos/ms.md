@@ -63,8 +63,8 @@ mysql> SET GLOBAL GTID_PURGED="<Master1 GTID_PURGED>,<Master2 GTID_PURGED>";
 
 Now it's time to configure the replication channels and set the filter rule (filters on slave will be for all channels):
 ```
-mysql> CHANGE MASTER TO MASTER_HOST=<master-host>, MASTER_USER="repl", MASTER_PASSWORD="repl", MASTER_AUTO_POSITION=1 FOR CHANNEL "master1";
-mysql> CHANGE MASTER TO MASTER_HOST=<master-host>, MASTER_USER="repl", MASTER_PASSWORD="repl", MASTER_AUTO_POSITION=1 FOR CHANNEL "master2";
+mysql> CHANGE MASTER TO MASTER_HOST=<master1-host>, MASTER_USER="repl", MASTER_PASSWORD="repl", MASTER_AUTO_POSITION=1 FOR CHANNEL "master1";
+mysql> CHANGE MASTER TO MASTER_HOST=<master2-host>, MASTER_USER="repl", MASTER_PASSWORD="repl", MASTER_AUTO_POSITION=1 FOR CHANNEL "master2";
 mysql> CHANGE REPLICATION FILTER REPLICATE_WILD_DO_TABLE=('master1.%','master2.%');
 ```
 After this we start both channels: 
