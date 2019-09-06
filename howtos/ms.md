@@ -1,11 +1,11 @@
 **[Back to Agenda](./../README.md)**
 
-# MySQL Multi-Source replication (5.7) with GTID based replication
+# Setting up multi-source replication (5.7) with GTID based replication
 
 Purpose of this guide is to show how to setup a new multi-source slave from two (or more) existing masters.
 We will also set up a replication filter to only apply data from some of the databases.
 
-Scenario:
+### Scenario:
 We have already 2 master up and running and we want filter one database from each.
 Lets call them master1 and master2 with databases master1 and master2 to make it easy.
 
