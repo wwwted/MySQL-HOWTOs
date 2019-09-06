@@ -29,7 +29,7 @@ All of the guides should work with both MySQL 5.7 and MySQL 8.
   * [MySQL NDB Cluster](https://github.com/wwwted/ndb-cluster-workshop)
 
 * MySQL Replication
-  * [Setting up multi-source replication](./howtos/ms.md)
+  * [Setting up multi-source replication (MySQL 5.7 and GTID)](./howtos/ms.md)
 
 * MySQL Document Store
 
