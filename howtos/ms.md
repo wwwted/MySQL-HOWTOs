@@ -30,30 +30,30 @@ mysql> GRANT REPLICATION SLAVE ON *.* TO 'repl_user'@'slave-host';
 
 ##### Provisioning of data to new multi-source slave
 
-Now it's time to provision some data to our slave, step one is to run mysqldump on master databases:
-(we only dump database master1 from master1 and master2 from master2)
+1) Now it's time to provision some data to our slave, step one is to run mysqldump on master databases:
+   (we only dump database master1 from master1 and master2 from master2)
 ```
 mysqldump -u<user> -p<pass> --single-transaction --triggers --routines --set-gtid-purged=ON --databases master1 > dumpM1.sql
 mysqldump -u<user> -p<pass> --single-transaction --triggers --routines --set-gtid-purged=ON --databases master2 > dumpM2.sql
 ```
-Get GTID_PURGED information from dump files and remember this (you need this later):
+2) Get GTID_PURGED information from dump files and remember this (you need this later):
 ```
 cat dumpM1.sql | grep GTID_PURGED | cut -f2 -d'=' | cut -f2 -d$'\''
 cat dumpM2.sql | grep GTID_PURGED | cut -f2 -d'=' | cut -f2 -d$'\''
 ```
 (should look something like: aeaeb1f9-cfab-11e9-bf5d-ec21e522bf21:1-5)
 
-Now we need to remove GTID_PURGED information from dump files before import:
+3) Now we need to remove GTID_PURGED information from dump files before import:
 ```
 sed '/GTID_PURGED/d' dumpM1.sql > dumpM1_nopurge.sql
 sed '/GTID_PURGED/d' dumpM2.sql > dumpM2_nopurge.sql
 ```
-Import data into new multi-source slave:
+4) Import data into new multi-source slave:
 ```
 mysql -u<user> -p<pass> < dumpM1_nopurge.sql
 mysql -u<user> -p<pass> < dumpM2_nopurge.sql
 ```
-Clear GTID state of slave server and set GTID_PURGED to the list of both values collected earlier:
+5) Clear GTID state on slave server and set GTID_PURGED to values collected earlier at step 2):
 ```
 mysql> RESET MASTER;
 mysql> SET GLOBAL GTID_PURGED="<Master1 GTID_PURGED>,<Master2 GTID_PURGED>";
@@ -85,7 +85,7 @@ The only requirement is to have MySQL (5.7) installed and add the path to binari
 ```
 ./01-CreateServers.sh
 ./02-setup-slave.sh
-mysql -uroot -proot -h127.0.0.1 -P63308 <  03-StartReplication
+mysql -uroot -proot -h127.0.0.1 -P63308 <  03-StartReplication.sql
 ```
 
 Further reading:
