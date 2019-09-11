@@ -4,6 +4,7 @@
 
 demohome=/home/ted/demos/MySQL-MS # Folder to install MySQL Servers
 mysqlhome=/home/ted/src/5.7.19    # Path to MySQL 5.7 binaries
+#mysqlhome=/home/ted/src/8.0.17    # Path to MySQL 5.7 binaries
 
 # Do not edit below
 
@@ -21,8 +22,8 @@ $mysqldump -uroot -proot -h127.0.0.1 -P63306 --single-transaction --triggers --r
 $mysqldump -uroot -proot -h127.0.0.1 -P63307 --single-transaction --triggers --routines --set-gtid-purged=ON --databases master2 > $demohome/dumpM2.sql
 
 # Save GTID Purged values
-master1_gtid_purged=`cat dumpM1.sql | grep GTID_PURGED | cut -f2 -d'=' | cut -f2 -d$'\''`
-master2_gtid_purged=`cat dumpM2.sql | grep GTID_PURGED | cut -f2 -d'=' | cut -f2 -d$'\''`
+master1_gtid_purged=`cat dumpM1.sql | grep GTID_PURGED | perl -p0 -e 's#/\*.*?\*/##sg' | cut -f2 -d'=' | cut -f2 -d$'\''`
+master2_gtid_purged=`cat dumpM2.sql | grep GTID_PURGED | perl -p0 -e 's#/\*.*?\*/##sg' | cut -f2 -d'=' | cut -f2 -d$'\''`
 echo "master1_gtid_purged"
 echo "master2_gtid_purged"
 

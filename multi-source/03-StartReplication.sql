@@ -1,5 +1,6 @@
 --
 -- Run as: /home/ted/src/5.7.19/bin/mysql -uroot -proot -S./mysql3/my.sock <  03-StartReplication.sql
+-- Run as: /home/ted/src/8.0.17/bin/mysql -uroot -proot -S./mysql3/my.sock <  03-StartReplication.sql
 --
 
 CHANGE MASTER TO MASTER_HOST="127.0.0.1", MASTER_PORT=63306, MASTER_USER="repl", MASTER_PASSWORD="repl", MASTER_AUTO_POSITION=1 FOR CHANNEL "master1";

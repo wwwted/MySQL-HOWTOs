@@ -7,10 +7,13 @@
 #
 # MySQL binaries can be downloaded using:
 # - wget https://dev.mysql.com/get/Downloads/MySQL-5.7/mysql-5.7.27-linux-glibc2.12-x86_64.tar.gz
+# - wget https://dev.mysql.com/get/Downloads/MySQL-8.0/mysql-8.0.17-linux-glibc2.12-x86_64.tar.xz
 #
 
 demohome=/home/ted/demos/MySQL-MS # Folder to install MySQL Servers
 mysqlhome=/home/ted/src/5.7.19    # Path to MySQL 5.7 binaries
+#mysqlhome=/home/ted/src/8.0.17    # Path to MySQL 8.0 binaries
+mysql8=0                          # If MySQL version 8 set to 1 otherwice 0 for MySQL 5.7
 
 # Do not edit below
 
@@ -67,8 +70,18 @@ $mysqladmin -uroot -h127.0.0.1 -P63308 -S${demohome}/mysql3/my.sock password "ro
 echo 
 echo "### Create repl user on masters: `date`"
 echo
-$mysql -uroot -proot -h127.0.0.1 -P63306 -se "GRANT REPLICATION SLAVE ON *.* TO 'repl'@'127.0.0.1' IDENTIFIED BY 'repl';"
-$mysql -uroot -proot -h127.0.0.1 -P63307 -se "GRANT REPLICATION SLAVE ON *.* TO 'repl'@'127.0.0.1' IDENTIFIED BY 'repl';"
+
+if [ $mysql8 -ge 1 ]
+then
+   $mysql -uroot -proot -h127.0.0.1 -P63306 -se "CREATE USER 'repl'@'127.0.0.1' IDENTIFIED WITH sha256_password BY 'repl';"
+   $mysql -uroot -proot -h127.0.0.1 -P63307 -se "CREATE USER 'repl'@'127.0.0.1' IDENTIFIED WITH sha256_password BY 'repl';"
+else 
+   $mysql -uroot -proot -h127.0.0.1 -P63306 -se "CREATE USER 'repl'@'127.0.0.1' IDENTIFIED BY 'repl';"
+   $mysql -uroot -proot -h127.0.0.1 -P63307 -se "CREATE USER 'repl'@'127.0.0.1' IDENTIFIED BY 'repl';"
+fi
+
+$mysql -uroot -proot -h127.0.0.1 -P63306 -se "GRANT REPLICATION SLAVE ON *.* TO 'repl'@'127.0.0.1';"
+$mysql -uroot -proot -h127.0.0.1 -P63307 -se "GRANT REPLICATION SLAVE ON *.* TO 'repl'@'127.0.0.1'"
 
 echo 
 echo "### MySQL installation done: `date`"

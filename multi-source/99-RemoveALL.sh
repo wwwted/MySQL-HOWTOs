@@ -3,6 +3,7 @@
 
 demohome=/home/ted/demos/MySQL-MS # Folder to install MySQL Servers
 mysqlhome=/home/ted/src/5.7.19    # Path to MySQL 5.7 binaries
+#mysqlhome=/home/ted/src/8.0.17    # Path to MySQL 5.7 binaries
 
 # Do not edit below
 
