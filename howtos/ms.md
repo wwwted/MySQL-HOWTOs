@@ -1,6 +1,6 @@
 **[Back to Agenda](./../README.md)**
 
-# Setting up multi-source replication (5.7) with GTID based replication
+# Setting up multi-source replication (5.7 and later) with GTID based replication
 
 Purpose of this guide is to show how to setup a new multi-source slave from two (or more) existing masters.
 We will also set up a replication filter to only apply data from some of the databases.
@@ -22,9 +22,15 @@ log-bin=mysql-bin
 binlog-format=ROW
 ```
 
-Next step is to create a user for replication on both master servers:
+Next step is to create a user for replication on both master servers, since MySQL 8 uses a new authentication plugin the creation of replication user will differ from MySQL 5.7.
+Create a replication user for MySQL 5.7 using:
 ```
 mysql> CREATE USER 'repl_user'@'slave-host' IDENTIFIED BY 'repl_pass';
+mysql> GRANT REPLICATION SLAVE ON *.* TO 'repl_user'@'slave-host';
+```
+For MySQL 8.0 use below commands:
+```
+mysql> CREATE USER 'repl_user'@'slave-host' IDENTIFIED WITH sha256_password BY 'repl_pass';
 mysql> GRANT REPLICATION SLAVE ON *.* TO 'repl_user'@'slave-host';
 ```
 
@@ -37,11 +43,12 @@ mysqldump -u<user> -p<pass> --single-transaction --triggers --routines --set-gti
 mysqldump -u<user> -p<pass> --single-transaction --triggers --routines --set-gtid-purged=ON --databases master2 > dumpM2.sql
 ```
 2) Get GTID_PURGED information from dump files and remember this (you need this later):
+   (the perl command was added to remove new c-style commment in MySQL 8 dumpfile)
 ```
-cat dumpM1.sql | grep GTID_PURGED | cut -f2 -d'=' | cut -f2 -d$'\''
-cat dumpM2.sql | grep GTID_PURGED | cut -f2 -d'=' | cut -f2 -d$'\''
+cat dumpM1.sql | grep GTID_PURGED | perl -p0 -e 's#/\*.*?\*/##sg' | cut -f2 -d'=' | cut -f2 -d$'\''
+cat dumpM2.sql | grep GTID_PURGED | perl -p0 -e 's#/\*.*?\*/##sg' | cut -f2 -d'=' | cut -f2 -d$'\''
 ```
-(should look something like: aeaeb1f9-cfab-11e9-bf5d-ec21e522bf21:1-5)
+(GTID should look something like: aeaeb1f9-cfab-11e9-bf5d-ec21e522bf21:1-5)
 
 3) Now we need to remove GTID_PURGED information from dump files before import:
 ```
