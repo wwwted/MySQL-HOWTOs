@@ -38,3 +38,4 @@ All of the guides should work with both MySQL 5.7 and MySQL 8.
 * MySQL Monitoring
 
 * MySQL Cloud
+  * [Automation scripts](https://github.com/wwwted/Oracle-Cloud)
