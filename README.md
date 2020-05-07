@@ -36,7 +36,7 @@ All of the guides should work with both MySQL 5.7 and MySQL 8.
   * [Automation scripts](https://github.com/wwwted/Oracle-Cloud)
 
 * Database Change Tracking
- * [Using MySQL Enterprise Audit Log](https://github.com/wwwted/Database-change-tracking)
+  * [Using MySQL Enterprise Audit Log](https://github.com/wwwted/Database-change-tracking)
 
 * MySQL Document Store
 
