@@ -21,6 +21,7 @@ All of the guides should work with both MySQL 5.7 and MySQL 8.
 
 * MySQL Performance
   * [MySQL Query Rewrite Plugin](./howtos/rewriter.md)
+  * [MySQL Automated Partitioning](https://gist.github.com/wwwted/34b5cec4855793ca354439444edc5c31)
 
 * MySQL High Avalability
   * [MySQL Replication](./howtos/repl.md)
@@ -31,11 +32,16 @@ All of the guides should work with both MySQL 5.7 and MySQL 8.
 * MySQL Replication
   * [Setting up multi-source replication (MySQL 5.7 and MYSQL 8 with GTID)](./howtos/ms.md)
 
+* MySQL Cloud
+  * [Automation scripts](https://github.com/wwwted/Oracle-Cloud)
+
+* Database Change Tracking
+ * [Using MySQL Enterprise Audit Log](https://github.com/wwwted/Database-change-tracking)
+
 * MySQL Document Store
 
 * MySQL Backup/Restore
 
 * MySQL Monitoring
 
-* MySQL Cloud
-  * [Automation scripts](https://github.com/wwwted/Oracle-Cloud)
+
