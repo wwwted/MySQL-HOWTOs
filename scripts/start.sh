@@ -5,6 +5,12 @@ if [ -z "$WS_HOME" ]; then
     exit 1
 fi  
 
+if [ -S /tmp/mysql.sock ]; then
+    echo "MySQL already runninng, socket file (/tmp/mysql.sock) exits"
+    exit 1
+fi
+
+
 echo "starting MySQL ..."
 $WS_HOME/mysqlsrc/bin/mysqld_safe --defaults-file=$WS_HOME/my.cnf --ledir=$WS_HOME/mysqlsrc/bin &
 sleep 5

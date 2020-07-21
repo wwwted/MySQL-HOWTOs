@@ -5,33 +5,36 @@ if [ -z "$WS_HOME" ]; then
     exit 1
 fi
 
-echo "Stopping mysql..."
-$WS_HOME/mysqlsrc/bin/mysqladmin -S/tmp/mysql.sock -uroot -proot shutdown
-$WS_HOME/mysqlsrc/bin/mysqladmin -S/tmp/mysql.sock -uroot shutdown
+mysql_datadir=$WS_HOME/mysqldata
 
-echo "pgrep mysql...."
-pgrep mysql -fla
+if [ -S /tmp/mysql.sock ]; then
+    echo "Stopping mysql..."
+    $WS_HOME/mysqlsrc/bin/mysqladmin -S/tmp/mysql.sock -uroot -proot shutdown
+fi
+
+echo ""
+echo "About to remove datadir ($mysql_datadir)"
 echo "Press <ENTER> to continue"
 read
 
-echo "removing datadir ..."
-rm -fr $WS_HOME/mysqldata
+echo "Removing datadir ($mysql_datadir)"
+rm -fr $mysql_datadir
 
-echo "creating datadir ..."
-mkdir $WS_HOME/mysqldata
+echo "Creating datadir ($mysql_datadir)"
+mkdir $mysql_datadir
 
-echo "initialize datadir.... "
-$WS_HOME/mysqlsrc/bin/mysqld --initialize-insecure --basedir=$WS_HOME/mysqlsrc --datadir=$WS_HOME/mysqldata
+echo "Running mysqld --initialize to populate $mysql_datadir"
+$WS_HOME/mysqlsrc/bin/mysqld --initialize-insecure --basedir=$WS_HOME/mysqlsrc --datadir=$mysql_datadir
+#$WS_HOME/mysqlsrc/bin/mysqld --initialize-insecure --basedir=$WS_HOME/mysqlsrc --datadir=$mysql_datadir --lower-case-table-names=1
 
-echo "starting mysql ..."
+echo "Starting mysql with configuratiuon file $WS_HOME/my.cnf"
 $WS_HOME/mysqlsrc/bin/mysqld_safe --defaults-file=$WS_HOME/my.cnf --ledir=$WS_HOME/mysqlsrc/bin &
 
-sleep 5;
-
-echo "MySQL started, pgrep mysql...."
-pgrep mysql -fla
-echo "Press <ENTER> to continue"
-read
+while [ ! -S /tmp/mysql.sock ]
+do
+  echo "Waiting for MySQL to start..."
+  sleep 2 
+done
 
 echo "setting password for root ..."
 $WS_HOME/mysqlsrc/bin/mysql -uroot -S/tmp/mysql.sock -se "SET sql_log_bin=0;set password='root'"
