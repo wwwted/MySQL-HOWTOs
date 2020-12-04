@@ -6,5 +6,5 @@ if [ -z "$WS_HOME" ]; then
 fi
 
 echo "stopping ..."
-$WS_HOME/mysqlsrc/bin/mysqladmin -S/tmp/mysql.sock -uroot -proot shutdown
+$WS_HOME/mysqlsrc/bin/mysqladmin -S$WS_HOME/mysql.sock -uroot -proot shutdown
 sleep 5

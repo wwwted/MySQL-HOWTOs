@@ -7,9 +7,9 @@ fi
 
 mysql_datadir=$WS_HOME/mysqldata
 
-if [ -S /tmp/mysql.sock ]; then
+if [ -S $WS_HOME/mysql.sock ]; then
     echo "Stopping mysql..."
-    $WS_HOME/mysqlsrc/bin/mysqladmin -S/tmp/mysql.sock -uroot -proot shutdown
+    $WS_HOME/mysqlsrc/bin/mysqladmin -S$WS_HOME/mysql.sock -uroot -proot shutdown
 fi
 
 echo ""
@@ -30,15 +30,16 @@ $WS_HOME/mysqlsrc/bin/mysqld --initialize-insecure --basedir=$WS_HOME/mysqlsrc -
 echo "Starting mysql with configuratiuon file $WS_HOME/my.cnf"
 $WS_HOME/mysqlsrc/bin/mysqld_safe --defaults-file=$WS_HOME/my.cnf --ledir=$WS_HOME/mysqlsrc/bin &
 
-while [ ! -S /tmp/mysql.sock ]
+while [ ! -S $WS_HOME/mysql.sock ]
 do
   echo "Waiting for MySQL to start..."
   sleep 2 
 done
 
-echo "setting password for root ..."
-$WS_HOME/mysqlsrc/bin/mysql -uroot -S/tmp/mysql.sock -se "SET sql_log_bin=0;set password='root'"
+echo "Setting password for root ..."
+$WS_HOME/mysqlsrc/bin/mysql -uroot -S$WS_HOME/mysql.sock -se "SET sql_log_bin=0;set password='root'"
 echo "Use old native password for root ..."
-$WS_HOME/mysqlsrc/bin/mysql -uroot -proot -S/tmp/mysql.sock -se "SET sql_log_bin=0;ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'root'"
+$WS_HOME/mysqlsrc/bin/mysql -uroot -proot -S$WS_HOME/mysql.sock -se "SET sql_log_bin=0;ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'root'"
 
-
+echo "Create user ted/ted"
+$WS_HOME/mysqlsrc/bin/mysql -uroot -proot -S$WS_HOME/mysql.sock -se"SET SQL_LOG_BIN=0; CREATE USER 'ted'@'%' IDENTIFIED BY 'ted'; GRANT ALL ON *.* TO 'ted'@'%' WITH GRANT OPTION";

@@ -9,7 +9,7 @@ echo "MySQL Version ($version)"
 MY_FILE="${WS_HOME}/my.cnf"
 [ -e $MY_FILE ] && return
 echo "[mysqld_safe]" 					> $MY_FILE
-echo "socket			= /tmp/mysql.sock"	>> $MY_FILE
+echo "socket			= $WS_HOME/mysql.sock"	>> $MY_FILE
 echo " "						>> $MY_FILE
 echo "[mysqld]"						>> $MY_FILE
 echo "basedir			= $WS_HOME/mysqlsrc"	>> $MY_FILE

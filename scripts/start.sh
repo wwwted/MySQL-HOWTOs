@@ -5,7 +5,7 @@ if [ -z "$WS_HOME" ]; then
     exit 1
 fi  
 
-if [ -S /tmp/mysql.sock ]; then
+if [ -S $WS_HOME/mysql.sock ]; then
     echo "MySQL already runninng, socket file (/tmp/mysql.sock) exits"
     exit 1
 fi
