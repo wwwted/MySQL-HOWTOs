@@ -41,17 +41,34 @@ SELECT RULE FROM INFORMATION_SCHEMA.MYSQL_FIREWALL_WHITELIST WHERE USERHOST = 't
 ### Demo
 In this demo we will create a user called "ted" and later set firewall in recording mode to record some statements in the whitelist.
 
-First step if you have not already done so is to install the plugin
+Update 2023-01: Due to changes in MySQL 8.0.27 a user who has privileges like "GRANT ALL on \*.\*" will not be blocked, more details [here](https://dev.mysql.com/doc/refman/8.0/en/privileges-provided.html#priv_firewall-exempt)
+
+You will use the MySQL root/admin user for installing and managing the firewall, you will need at least the FIREWALL_ADMIN privilege, more details [here](https://dev.mysql.com/doc/refman/8.0/en/privileges-provided.html#priv_firewall-admin).
+
+First step, if you have not already done this, is to install the plugin:
 ```
 mysql -u root -proot mysql <  mysqlsrc/share/linux_install_firewall.sql
 ```
 
-Log into mysql and run below commands as user 'root' to create our user:
+Log into mysql and run below commands as user 'root' to create our demo user:
 ```
 CREATE USER 'ted'@'localhost' IDENTIFIED BY 'ted';
-GRANT ALL ON *.* TO 'ted'@'localhost';
+GRANT ALL ON ted.* TO 'ted'@'localhost';
 ```
-Enable recording for user 'ted'
+
+Grants for user "ted@localhost" should look like:
+```
+SHOW GRANTS for ted@localhost;
++-------------------------------------------------------+
+| Grants for ted2@localhost                             |
++-------------------------------------------------------+
+| GRANT USAGE ON *.* TO `ted`@`localhost`              |
+| GRANT ALL PRIVILEGES ON `ted`.* TO `ted`@`localhost` |
++-------------------------------------------------------+
+``` 
+(If you have created your own user and have "system level" privileges, make sure thoose do not include FIREWALL_EXEMPT)
+
+Enable recording for user 'ted':
 ```
 CALL mysql.sp_set_firewall_mode('ted@localhost', 'RECORDING');
 ```
@@ -80,16 +97,16 @@ And run command:
 ```
 mysql -uted -pted < fw1.sql
 ```
-Now look whitelist for user ted
+Now look whitelist for user ted (run as admin user)
 ```
 SELECT RULE FROM INFORMATION_SCHEMA.MYSQL_FIREWALL_WHITELIST WHERE USERHOST = 'ted@localhost';
 ```
-Lets put firewall in protecting mode for user 'ted'
+Lets put firewall in protecting mode for user 'ted' (run as admin user)
 ```
 CALL mysql.sp_set_firewall_mode('ted@localhost', 'PROTECTING');
 SELECT MODE FROM INFORMATION_SCHEMA.MYSQL_FIREWALL_USERS WHERE USERHOST = 'ted@localhost';
 ```
-Create a new file called fw2.sql using commands below
+Create a new file called fw2.sql using commands below:
 ```
 use ted;
 INSERT INTO t1 VALUES (6,'ted7');
@@ -99,7 +116,7 @@ SELECT c FROM t1 where c like "ted%";
 SELECT * FROM t1 where i=3;
 SELECT i FROM t1 where i=3;
 ```
-Now lets try to run these statements
+Now lets try to run these statements (user ted):
 ```
 mysql -uted -pted --force -v -v -v  < fw2.sql
 ```
@@ -107,7 +124,7 @@ Last two statement where blocked as expected, these are new and have not been re
 
 If you want, set firewall in RECORDING mode again and re-read file fw2.sql and you will see that whitelist is update and then you can successfully execute the last two SELECT statments.
 
-If you want to clear firewall whitelist use command:
+If you want to clear firewall whitelist use command (run as admin user):
 ```
 CALL mysql.sp_set_firewall_mode('ted@localhost', 'RESET');
 ```
