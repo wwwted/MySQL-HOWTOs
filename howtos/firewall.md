@@ -50,13 +50,13 @@ First step, if you have not already done this, is to install the plugin:
 mysql -u root -proot mysql <  mysqlsrc/share/linux_install_firewall.sql
 ```
 
-Log into mysql and run below commands as user 'root' to create our demo user:
+Log into mysql and run below commands as user 'root' (or other admin user) to create our demo user:
 ```
 CREATE USER 'ted'@'localhost' IDENTIFIED BY 'ted';
 GRANT ALL ON ted.* TO 'ted'@'localhost';
 ```
 
-Grants for user "ted@localhost" should look like:
+Grants for user "ted@localhost" should look like (run as admin user):
 ```
 SHOW GRANTS for ted@localhost;
 +-------------------------------------------------------+
@@ -68,11 +68,11 @@ SHOW GRANTS for ted@localhost;
 ``` 
 (If you have created your own user and have "system level" privileges, make sure thoose do not include FIREWALL_EXEMPT)
 
-Enable recording for user 'ted':
+Enable recording for user 'ted' (run as admin user):
 ```
 CALL mysql.sp_set_firewall_mode('ted@localhost', 'RECORDING');
 ```
-Look at status in information_schema tables:
+Look at status in information_schema tables (run as admin user):
 ```
 SELECT MODE FROM INFORMATION_SCHEMA.MYSQL_FIREWALL_USERS WHERE USERHOST = 'ted@localhost';
 SELECT RULE FROM INFORMATION_SCHEMA.MYSQL_FIREWALL_WHITELIST WHERE USERHOST = 'ted@localhost';
