@@ -122,7 +122,7 @@ mysql -uted -pted --force -v -v -v  < fw2.sql
 ```
 Last two statement where blocked as expected, these are new and have not been recored.
 
-If you want, set firewall in RECORDING mode again and re-read file fw2.sql and you will see that whitelist is update and then you can successfully execute the last two SELECT statments.
+If you want, set firewall in RECORDING mode again and re-read file fw2.sql (remove the two insert statemtents to avaoid errors) and you will see that whitelist is update and then you can successfully execute the last two SELECT statments.
 
 If you want to clear firewall whitelist use command (run as admin user):
 ```
